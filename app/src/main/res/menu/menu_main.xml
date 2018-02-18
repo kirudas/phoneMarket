@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity" >
     <item
-        android:id="@+id/colab"
-        android:orderInCategory="100"
-        android:title="Colaboradors" />
-    <item
         android:id="@+id/about"
         android:orderInCategory="101"
         android:title="About Us" />

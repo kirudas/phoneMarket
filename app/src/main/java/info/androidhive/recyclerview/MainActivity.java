@@ -118,9 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this,AboutUs.class);
                 startActivity(intent);
                 return true;
-            case R.id.colab:
-
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
