@@ -17,10 +17,8 @@
 
     <TextView
         android:id="@+id/marca"
-        android:layout_width="92dp"
+        android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="24dp"
         android:layout_marginTop="44dp"
         android:text="MARCA"
         android:textSize="24sp"

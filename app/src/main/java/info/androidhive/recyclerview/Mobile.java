@@ -62,12 +62,20 @@ public class Mobile {
         this.imatge = imatge;
     }
 
-    public Mobile(String nom, String marca, String model, String any) {
+    public Mobile(String nom, String marca, String model, String any, String pantalla, String hdd, String ram, String camara, String so, String preu, String imatge) {
         this.nom = nom;
         this.marca = marca;
         this.model = model;
         this.any = any;
+        this.pantalla = pantalla;
+        this.hdd = hdd;
+        this.ram = ram;
+        this.camara = camara;
+        So = so;
+        this.preu = preu;
+        this.imatge = imatge;
     }
+
 
     public String getNom() {
         return nom;

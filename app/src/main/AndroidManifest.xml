@@ -20,7 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailMobile"></activity>
+        <activity android:name=".DetailMobile" />
+        <activity android:name=".AboutUs" />
+        <activity
+            android:name=".Colaboradors"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_colaboradors"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

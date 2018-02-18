@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Mobile> mobileList = new ArrayList<>();
     private RecyclerView recyclerView;
     private MobilesAdapter mAdapter;
-    public static final String EXTRA_MESSAGE = "info.androidhive.recyclerview.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // vertical RecyclerView
-        // keep movie_list_row.xml width to `match_parent`
+        // keep mobile_list_row.xmll width to `match_parent`
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
 
         // horizontal RecyclerView
-        // keep movie_list_row.xml width to `wrap_content`
+        // keep mobile_list_row.xmll width to `wrap_content`
         // RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView.setLayoutManager(mLayoutManager);
@@ -60,7 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 Mobile mobile = mobileList.get(position);
                 //Toast.makeText(getApplicationContext(), mobile.getNom() + " is selected!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this,DetailMobile.class);
-                intent.putExtra(EXTRA_MESSAGE, mobile.getNom());
+                intent.putExtra("nom", mobile.getNom());
+                intent.putExtra("marca", mobile.getMarca());
+                intent.putExtra("model", mobile.getModel());
+                intent.putExtra("pantalla", mobile.getPantalla());
+                intent.putExtra("hdd", mobile.getHdd());
+                intent.putExtra("ram", mobile.getRam());
+                intent.putExtra("camara", mobile.getCamara());
+                intent.putExtra("so", mobile.getSo());
+                intent.putExtra("preu", mobile.getPreu());
+                intent.putExtra("any", mobile.getAny());
+                intent.putExtra("foto",mobile.getImatge());
                 //intent.putExtra("ID",mobile.getNom());
                 startActivity(intent);
             }
@@ -78,13 +87,17 @@ public class MainActivity extends AppCompatActivity {
      * Prepares sample data to provide data set to adapter
      */
     private void prepareMobileData(){
-        Mobile mobile = new Mobile("IPhone X", "Apple","X","2017");
+        Mobile mobile = new Mobile("iPhone X", "Apple","iPhone X","12-11-2017", "5,8", "64", "Unknow", "12", "iOS 11", "1159€", "https://images.apple.com/es/iphone/compare/images/overview/compare_iphonex_silver_large.jpg");
         mobileList.add(mobile);
-        mobile = new Mobile("Oneplus 5T", "OnePlus","5T","2018");
+        mobile = new Mobile("iPhone 8", "Apple","iPhone 8","12-11-2017", "4,7", "64", "Unknow", "12", "iOS 11", "809€", "https://images.apple.com/es/iphone/compare/images/overview/compare_iphone8_silver_large.jpg");
         mobileList.add(mobile);
-        mobile = new Mobile("Samsung Galaxy S8", "Samsung","S8","2017");
+        mobile = new Mobile("iPhone 8 Plus", "Apple","iPhone 8 Plus","12-11-2017", "5,5", "64", "Unknow", "12", "iOS 11", "919€", "https://images.apple.com/es/iphone/compare/images/overview/compare_iphone8plus_silver_large.jpg");
         mobileList.add(mobile);
-        mobile = new Mobile("Xperoa XZ", "Sony","XZ","2017");
+        mobile = new Mobile("Samsung", "Samsung", "Samsung Note 8", "05-10-2017", "6,3", "64", "6", "12", "Android 7.1", "1010€", "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6015/6015800_sd.jpg;maxHeight=640;maxWidth=550");
+        mobileList.add(mobile);
+        mobile = new Mobile("Samsung", "Samsung", "Samsung S8", "29-03-2017", "5,8", "64", "4", "12", "Android 7", "809€", "http://d2giyh01gjb6fi.cloudfront.net/phone_front/0001/61/thumb_60270_phone_front_big.jpeg");
+        mobileList.add(mobile);
+        mobile = new Mobile("Samsung", "Samsung", "Samsung S8 Plus", "29-03-2017", "6,2", "64", "4", "12", "Android 7", "919€", "http://techbeasts.com/wp-content/uploads/2017/03/Samsung-Galaxy-S8-Press-Render-1.jpg");
         mobileList.add(mobile);
 
         // notify adapter about data set changes
@@ -102,12 +115,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
-                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,AboutUs.class);
+                startActivity(intent);
                 return true;
+            case R.id.colab:
 
-            /*case R.id.action_switch:
-                Toast.makeText(this, "Switch", Toast.LENGTH_SHORT).show();
-                return true;*/
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
