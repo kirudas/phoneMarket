@@ -4,6 +4,7 @@ package info.androidhive.recyclerview;
  * Created by Lincoln on 15/01/16.
  */
 public class Mobile {
+    private int codi;
     private String nom, marca, model, any, pantalla, hdd, ram, camara, So, preu, imatge;
 
     public String getPantalla() {
@@ -62,8 +63,12 @@ public class Mobile {
         this.imatge = imatge;
     }
 
-    public Mobile(String nom, String marca, String model, String any, String pantalla, String hdd, String ram, String camara, String so, String preu, String imatge) {
+
+
+    public Mobile(int codi, String nom, String marca, String model, String any, String pantalla, String hdd, String ram, String camara, String so, String preu, String imatge) {
+        this.codi = codi;
         this.nom = nom;
+
         this.marca = marca;
         this.model = model;
         this.any = any;
@@ -76,6 +81,9 @@ public class Mobile {
         this.imatge = imatge;
     }
 
+    public int getCodi() {
+        return codi;
+    }
 
     public String getNom() {
         return nom;

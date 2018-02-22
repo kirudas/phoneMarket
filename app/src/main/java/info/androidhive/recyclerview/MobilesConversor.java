@@ -26,8 +26,8 @@ public class MobilesConversor {
 
     /**
      * Desa un nou titular a la taula
-     * @param Mobile l'objecte a desar
-     * @return l'id del nou titular desat
+     * @param mobile l'objecte a desar
+     * @return l'id del nou Mobile desat
      */
     public long save(Mobile mobile) {
         long index = -1;
@@ -36,8 +36,18 @@ public class MobilesConversor {
         // es crea un objecte de diccionari (clau,valor) per indicar els valors a afegir
         ContentValues dades = new ContentValues();
 
-        dades.put("titol", mobile.getTitol());
-        dades.put("subtitol", mobile.getSubtitol());
+        dades.put("codi", mobile.getCodi());
+        dades.put("model", mobile.getModel());
+        dades.put("marca", mobile.getMarca());
+        dades.put("pantalla", mobile.getPantalla());
+        dades.put("hdd", mobile.getHdd());
+        dades.put("ram", mobile.getRam());
+        dades.put("camara", mobile.getCamara());
+        dades.put("so", mobile.getAny());
+        dades.put("any", mobile.getPreu());
+        dades.put("preu", mobile.getPreu());
+        dades.put("imatge", mobile.getImatge());
+
         try {
             index = db.insertOrThrow("Mobiles", null, dades);
             // volem veure en el log el que passa
@@ -58,7 +68,7 @@ public class MobilesConversor {
         SQLiteDatabase db = helper.getReadableDatabase();
 
         return db.query(true, "Mobiles",
-                new String[]{"codi","titol","subtitol"},
+                new String[]{"codi", "model", "marca", "pantalla", "hdd", "ram", "camara", "so", "any", "preu", "imatge"},
                 null, null, null, null, null, null);
     }
 
@@ -71,7 +81,7 @@ public class MobilesConversor {
         // obtenir l'objecte BD en mode esriptura
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        return db.delete("Titulars", "codi=" + t.getCodi(),null ) > 0;
+        return db.delete("Mobiles", "codi=" + t.getCodi(),null ) > 0;
     }
     /**
      * Esborra tots els titulars de la taula
