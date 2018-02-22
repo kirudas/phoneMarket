@@ -1,16 +1,80 @@
 package info.androidhive.recyclerview;
 
-import android.support.v7.widget.RecyclerView;
+import android.app.Activity;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class MobilesAdapter extends RecyclerView.Adapter<MobilesAdapter.MyViewHolder> {
+public class MobilesAdapter extends BaseAdapter {
+    private Activity context;
+    private Cursor dades;
 
-    private List<Mobile> mobilesList;
+    /**
+     * Constructor
+     * @param context el context de l'aplicació
+     * @param dades cursor amb les dades
+     */
+    MobilesAdapter(Activity context, Cursor dades) {
+        super();
+        this.context = context;
+        this.dades = dades;
+    }
+
+    /**
+     * Sobreescriptura del mètode getView per indicar com s'han de mostrar
+     * les dades d'una fila del ListView
+     */
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View element = convertView;
+
+        Mobile t = getItem(position);
+
+        if(element == null) {
+            LayoutInflater inflater = context.getLayoutInflater();
+            element = inflater.inflate(R.layout.mobile_list_row, null);
+        }
+        TextView lblModel = (TextView)element.findViewById(R.id.model);
+        lblModel.setText(t.getModel());
+
+        TextView lblMarca = (TextView)element.findViewById(R.id.marca);
+        lblMarca.setText(t.getMarca());
+
+        return element;
+    }
+
+    /**
+     * Sobreescriptura del mètode getCount que indica quantes dades gestiona
+     * l'adaptador.
+     */
+    public int getCount() {
+        return dades.getCount();
+    }
+    /**
+     * Sobreescriptura del mètode getItem que retorna l'objecte que ocupa la 
+     * posició indicada amb el paràmetre.
+     */
+    public Mobile getItem(int pos) {
+        Mobile t = new Mobile();
+        if(dades.moveToPosition(pos)) {
+            t.setCodi(dades.getInt(0));
+            t.setTitol(dades.getString(1));
+            t.setSubtitol(dades.getString(2));
+        }
+        return t;
+    }
+    /**
+     * Sobreescriptura del mètode getItemId que retorna l'id de l'objecte
+     * que ocupa la posició indicad amb el paràmetre.
+     */
+    public long getItemId(int position) {
+        return getItem(position).getCodi();
+    }
+    /*private List<Mobile> mobilesList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, subtitle;
@@ -45,5 +109,5 @@ public class MobilesAdapter extends RecyclerView.Adapter<MobilesAdapter.MyViewHo
     @Override
     public int getItemCount() {
         return mobilesList.size();
-    }
+    }*/
 }
