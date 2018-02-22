@@ -10,7 +10,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         // crear l'objecte que crea la connexió amb la BD
         titHelper = new  MobilesSqlLiteHelper(this, "Titulars.db", null, 2);
-        // obtenir l'objecte BD 
+        // obtenir l'objecte BD
         SQLiteDatabase db = titHelper.getWritableDatabase();
         MobilesConv = new MobilesConversor(titHelper);
 
@@ -109,10 +111,19 @@ public class MainActivity extends AppCompatActivity {
  * Torna a executar la consulta i a enllaçar les dades
  */
     void refreshData() {
-        titulars = titularsConv.getAll();
-        adapter = new TitularsAdapter(this, titulars);
-        llista.setAdapter(adapter);
-        if(titulars.getCount() == 0) {
+        Mobiles = MobilesConv.getAll();
+        adapter = new MobilesAdapter(this, Mobiles);
+        llista.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+
+        llista.setLayoutManager(mLayoutManager);
+
+        llista.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        llista.setItemAnimator(new DefaultItemAnimator());
+
+        llista.setAdapter(a);
+        if(Mobiles.getCount() == 0) {
             lblNoData.setVisibility(lblNoData.VISIBLE);
             llista.setVisibility(llista.INVISIBLE);
         }
@@ -125,20 +136,32 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Crea el menú d'opcions de l'aplicació
      */
+    /*
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
+*/
     /**
      * Respon a l'event d'haver escollit una opció del menú de l'app
      */
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.mnuAdd:
-                Intent i = new Intent(this, NouTitularActivity.class);
-                startActivityForResult(i, ADD_TITULAR);
+            case R.id.about:
+                Intent intent = new Intent(MainActivity.this,AboutUs.class);
+                startActivity(intent);
+                return true;
+            case R.id.mnuAfegir:
+                //Intent i = new Intent(this, NouMobileActivity.class);
+                //startActivityForResult(i, ADD_Mobile);
+                return true;
+            case R.id.mnuConfig:
+                //Intent i = new Intent(this, NouMobileActivity.class);
+                //startActivityForResult(i, ADD_Mobile);
+                Toast.makeText(this, "PROXIMAMENT", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.mnuSortir :
                 this.finish();
@@ -147,9 +170,10 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         // si s'ha tancat l'activitat ADD_TITULAR i ha anat bé
-        if( requestCode == ADD_TITULAR && resultCode == RESULT_OK) {
+        if( requestCode == ADD_Mobile && resultCode == RESULT_OK) {
             refreshData();
         }
     }
@@ -157,36 +181,47 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Crea el menú contextual
      */
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+    /*
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.contextual, menu);
     }
-
+*/
     /**
      * Respon a l'event d'haver escollit una opció del menú contextual
      */
+    /*
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
+        //AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 
         switch (item.getItemId()) {
+            case R.id.about:
+                Intent intent = new Intent(MainActivity.this,AboutUs.class);
+                startActivity(intent);
+                return true;
             case R.id.mnuVeureDades:
                 // mostrar les dades de l'element escollit
-                Toast.makeText(this, adapter.getItem(info.position).getTitol(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "VEURÀ DADES", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.mnuEsborrar:
                 // esborrar l'element escollit
-                titularsConv.remove(adapter.getItem(info.position));
+                //MobilesConv.remove(adapter.getItem(info.position));
+
                 // actualitzar la llista
                 refreshData();
                 // mostrar missatge
                 Toast.makeText(this, "S'ha esborrat el titular!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "VEURÀ DADES", Toast.LENGTH_LONG).show();
+
+
                 return true;
             default: break;
         }
         return false;
     }
+    */
     /**
      * Prepares sample data to provide data set to adapter
      */
@@ -209,12 +244,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }*/
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -228,4 +258,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+*/
 }

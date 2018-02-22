@@ -2,6 +2,7 @@ package info.androidhive.recyclerview;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class MobilesAdapter extends BaseAdapter {
+public class MobilesAdapter extends RecyclerView.Adapter<MobilesAdapter.MyViewHolder> {
     private Activity context;
     private Cursor dades;
 
@@ -82,7 +83,7 @@ public class MobilesAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return getItem(position).getCodi();
     }
-    /*private List<Mobile> mobilesList;
+    //private List<Mobile> mobilesList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, subtitle;
@@ -95,8 +96,8 @@ public class MobilesAdapter extends BaseAdapter {
     }
 
 
-    public MobilesAdapter(List<Mobile> mobilesList) {
-        this.mobilesList = mobilesList;
+    public MobilesAdapter(Cursor dades) {
+        this.dades = dades;
     }
 
     @Override
@@ -117,5 +118,5 @@ public class MobilesAdapter extends BaseAdapter {
     @Override
     public int getItemCount() {
         return mobilesList.size();
-    }*/
+    }
 }

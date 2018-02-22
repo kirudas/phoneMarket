@@ -6,8 +6,16 @@
         android:id="@+id/about"
         android:orderInCategory="101"
         android:title="About Us" />
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item
+        android:id="@+id/mnuAfegir"
         android:orderInCategory="102"
-        app:showAsAction="never" />
+        android:title="Afegir" />
+    <item
+        android:id="@+id/mnuConfig"
+        android:orderInCategory="105"
+        android:title="Config" />
+    <item
+        android:id="@+id/mnuSortir"
+        android:orderInCategory="106"
+        android:title="Sortir" />
 </menu>
