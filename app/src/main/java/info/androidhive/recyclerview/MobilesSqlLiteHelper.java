@@ -12,7 +12,7 @@ public class MobilesSqlLiteHelper extends SQLiteOpenHelper{
         // Sentència SQL per crear la taula de Mobiles
     //String nom, marca, model, any, pantalla, hdd, ram, camara, So, preu, imatge;
         private final String SQL_CREATE_MOBILES = "CREATE TABLE Mobiles(" +
-                "	codi INTEGER PRIMARY KEY, " +
+                "	codi INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "	nom TEXT, " +
                 "	marca TEXT, " +
                 "	model TEXT, " +

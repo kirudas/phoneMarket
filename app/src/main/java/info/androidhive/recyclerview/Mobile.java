@@ -63,7 +63,7 @@ public class Mobile {
         this.imatge = imatge;
     }
 
-
+    public Mobile() {    }
 
     public Mobile(int codi, String nom, String marca, String model, String any, String pantalla, String hdd, String ram, String camara, String so, String preu, String imatge) {
         this.codi = codi;
@@ -83,6 +83,10 @@ public class Mobile {
 
     public int getCodi() {
         return codi;
+    }
+
+    public void setCodi(int codi) {
+        this.codi = codi;
     }
 
     public String getNom() {

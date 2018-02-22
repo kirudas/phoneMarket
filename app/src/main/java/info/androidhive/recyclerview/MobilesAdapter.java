@@ -62,8 +62,16 @@ public class MobilesAdapter extends BaseAdapter {
         Mobile t = new Mobile();
         if(dades.moveToPosition(pos)) {
             t.setCodi(dades.getInt(0));
-            t.setTitol(dades.getString(1));
-            t.setSubtitol(dades.getString(2));
+            t.setModel(dades.getString(1));
+            t.setMarca(dades.getString(2));
+            t.setPantalla(dades.getString(3));
+            t.setHdd(dades.getString(4));
+            t.setRam(dades.getString(5));
+            t.setCamara(dades.getString(6));
+            t.setSo(dades.getString(7));
+            t.setAny(dades.getString(8));
+            t.setPreu(dades.getString(9));
+            t.setImatge(dades.getString(10));
         }
         return t;
     }
