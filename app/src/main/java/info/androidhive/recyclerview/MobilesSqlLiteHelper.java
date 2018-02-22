@@ -63,4 +63,4 @@ public class MobilesSqlLiteHelper extends SQLiteOpenHelper{
             db.execSQL(SQL_CREATE_MOBILES);
         }
     }
-}
+
