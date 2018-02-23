@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Cursor Mobiles;
     private MobilesAdapter adapter;
-    private MobilesSqlLiteHelper titHelper;
+    private MobilesSqlLiteHelper mobHelper;
     private MobilesConversor MobilesConv;
     private RecyclerView llista;
     private TextView lblNoData;
@@ -42,17 +42,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // recuperar els controls
-        lblNoData = (TextView) findViewById(R.id.lblNoData);
+        //lblNoData = (TextView) findViewById(R.id.lblNoData);
         llista = (RecyclerView) findViewById(R.id.recycler_view);
 
         // vincular el menú contextual a la llista
         registerForContextMenu(llista);
 
         // crear l'objecte que crea la connexió amb la BD
-        titHelper = new  MobilesSqlLiteHelper(this, "Titulars.db", null, 2);
+        mobHelper = new  MobilesSqlLiteHelper(this, "Mobiles.db", null, 2);
         // obtenir l'objecte BD
-        SQLiteDatabase db = titHelper.getWritableDatabase();
-        MobilesConv = new MobilesConversor(titHelper);
+        SQLiteDatabase db = mobHelper.getWritableDatabase();
+        MobilesConv = new MobilesConversor(mobHelper);
 
         // Si s'ha obert correctament la BD
         if(db != null) {
@@ -122,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
 
         llista.setItemAnimator(new DefaultItemAnimator());
 
-        llista.setAdapter(a);
+        llista.setAdapter(adapter);
         if(Mobiles.getCount() == 0) {
-            lblNoData.setVisibility(lblNoData.VISIBLE);
+            //lblNoData.setVisibility(lblNoData.VISIBLE);
             llista.setVisibility(llista.INVISIBLE);
         }
         else {
-            lblNoData.setVisibility(lblNoData.INVISIBLE);
+            //lblNoData.setVisibility(lblNoData.INVISIBLE);
             llista.setVisibility(llista.VISIBLE);
         }
     }

@@ -110,13 +110,14 @@ public class MobilesAdapter extends RecyclerView.Adapter<MobilesAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Mobile mobile = mobilesList.get(position);
+
+        Mobile mobile = getItem(position);//mobilesList.get(position);
         holder.title.setText(mobile.getModel());
         holder.subtitle.setText(mobile.getMarca());
     }
 
     @Override
     public int getItemCount() {
-        return mobilesList.size();
+        return dades.getCount();
     }
 }
