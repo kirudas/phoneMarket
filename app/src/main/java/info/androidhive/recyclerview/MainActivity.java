@@ -78,23 +78,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);*/
 
         // row click listener
-        /*llista.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), llista, new RecyclerTouchListener.ClickListener() {
+        llista.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), llista, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Mobile mobile = Mobiles.get //.get(position);
+                Mobile mobile = adapter.getItem(position); //.get(position);
                 //Toast.makeText(getApplicationContext(), mobile.getNom() + " is selected!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this,DetailMobile.class);
-                intent.putExtra("nom", mobile.getNom());
-                intent.putExtra("marca", mobile.getMarca());
-                intent.putExtra("model", mobile.getModel());
-                intent.putExtra("pantalla", mobile.getPantalla());
-                intent.putExtra("hdd", mobile.getHdd());
-                intent.putExtra("ram", mobile.getRam());
-                intent.putExtra("camara", mobile.getCamara());
-                intent.putExtra("so", mobile.getSo());
-                intent.putExtra("preu", mobile.getPreu());
-                intent.putExtra("any", mobile.getAny());
-                intent.putExtra("foto",mobile.getImatge());
+                String aux = String.valueOf(mobile.getCodi());
+                intent.putExtra("codi", aux);
                 //intent.putExtra("ID",mobile.getNom());
                 startActivity(intent);
             }
@@ -103,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             public void onLongClick(View view, int position) {
 
             }
-        }));*/
+        }));
 
         //prepareMobileData();
     }

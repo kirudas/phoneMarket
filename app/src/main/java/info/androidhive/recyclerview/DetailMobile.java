@@ -1,6 +1,8 @@
 package info.androidhive.recyclerview;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,42 +17,56 @@ import java.net.URL;
 
 public class DetailMobile extends AppCompatActivity {
     private ImageView mImageView = null;
+    private Cursor Mobiles;
+    private MobilesConversor MobilesConv;
+    private MobilesSqlLiteHelper mobHelper;
+    //private String[] colums= {"model","marca","pantalla","hdd","ram","camara","so","any","preu","foto"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_mobile);
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra("model");
+        String codi = intent.getStringExtra("codi");
+        mobHelper = new  MobilesSqlLiteHelper(this, "Mobiles.db", null, 2);
+        // obtenir l'objecte BD
+        SQLiteDatabase db = mobHelper.getWritableDatabase();
+        MobilesConv = new MobilesConversor(mobHelper);
+        //Busca el mobil segons el codi
+        Cursor cursor = MobilesConv.getAll();
+        cursor.moveToFirst();
+        boolean acaba = cursor.isLast();
+        while(!acaba && !cursor.isAfterLast()){
+            if (cursor.getString(0).equals(codi)){
+                acaba = true;
+            }else {
+                cursor.moveToNext();
+            }
+        }
+        if (!acaba){
+            return;
+        }
         TextView textView = findViewById(R.id.model);
-        textView.setText(message);
-        message = intent.getStringExtra("marca");
+        textView.setText(cursor.getString(1));
         textView = findViewById(R.id.marca);
-        textView.setText(message);
-        message = intent.getStringExtra("pantalla");
+        textView.setText(cursor.getString(2));
         textView = findViewById(R.id.midaPantalla);
-        textView.setText(message);
-        message = intent.getStringExtra("hdd");
+        textView.setText(cursor.getString(3));
         textView = findViewById(R.id.quantHdd);
-        textView.setText(message);
-        message = intent.getStringExtra("ram");
+        textView.setText(cursor.getString(4));
         textView = findViewById(R.id.quantRam);
-        textView.setText(message);
-        message = intent.getStringExtra("camara");
+        textView.setText(cursor.getString(5));
         textView = findViewById(R.id.camera);
-        textView.setText(message);
-        message = intent.getStringExtra("so");
+        textView.setText(cursor.getString(6));
         textView = findViewById(R.id.versio);
-        textView.setText(message);
-        message = intent.getStringExtra("any");
+        textView.setText(cursor.getString(7));
         textView = findViewById(R.id.dataLlancament);
-        textView.setText(message);
-        message = intent.getStringExtra("preu");
+        textView.setText(cursor.getString(8));
         textView = findViewById(R.id.preu);
-        textView.setText(message);
-        String url = intent.getStringExtra("foto");
+        textView.setText(cursor.getString(9));
         mImageView = findViewById(R.id.imageView2);
-        new TascaDescarrega().execute(url);
+
+        new TascaDescarrega().execute(cursor.getString(10));
     }
     private Bitmap carregarImatgeDeLaXarxa(String url){
         try {
