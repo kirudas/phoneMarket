@@ -10,17 +10,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /*private List<Mobile> mobileList = new ArrayList<>();
@@ -146,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.mnuAfegir:
-                //Intent i = new Intent(this, NouMobileActivity.class);
-                //startActivityForResult(i, ADD_Mobile);
+                Intent i = new Intent(this, NouMobileActivity.class);
+                startActivityForResult(i, ADD_Mobile);
                 return true;
             case R.id.mnuConfig:
                 //Intent i = new Intent(this, NouMobileActivity.class);

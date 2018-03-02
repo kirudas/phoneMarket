@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/model"
+        android:id="@+id/inpCrtMod"
         android:layout_width="205dp"
         android:layout_height="51dp"
         android:layout_marginRight="30dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/marca" />
 
     <TextView
-        android:id="@+id/dataLlancament"
+        android:id="@+id/inpCrtDataLlancament"
         android:layout_width="123dp"
         android:layout_height="22dp"
         android:layout_marginRight="30dp"
@@ -50,7 +50,7 @@
         android:text="DataLlançament"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/model" />
+        app:layout_constraintTop_toBottomOf="@+id/inpCrtMod" />
 
     <TextView
         android:id="@+id/textView5"

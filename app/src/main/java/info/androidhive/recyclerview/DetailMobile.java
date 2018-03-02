@@ -46,7 +46,7 @@ public class DetailMobile extends AppCompatActivity {
         if (!acaba){
             return;
         }
-        TextView textView = findViewById(R.id.model);
+        TextView textView = findViewById(R.id.inpCrtMod);
         textView.setText(cursor.getString(1));
         textView = findViewById(R.id.marca);
         textView.setText(cursor.getString(2));
@@ -60,7 +60,7 @@ public class DetailMobile extends AppCompatActivity {
         textView.setText(cursor.getString(6));
         textView = findViewById(R.id.versio);
         textView.setText(cursor.getString(7));
-        textView = findViewById(R.id.dataLlancament);
+        textView = findViewById(R.id.inpCrtDataLlancament);
         textView.setText(cursor.getString(8));
         textView = findViewById(R.id.preu);
         textView.setText(cursor.getString(9));
