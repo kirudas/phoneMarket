@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
      * Respon a l'event d'haver escollit una opció del menú de l'app
      */
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+        public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
                 Intent intent = new Intent(MainActivity.this,AboutUs.class);
@@ -144,10 +144,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(this, NouMobileActivity.class);
                 startActivityForResult(i, ADD_Mobile);
                 return true;
-            case R.id.mnuConfig:
-                //Intent i = new Intent(this, NouMobileActivity.class);
-                //startActivityForResult(i, ADD_Mobile);
-                Toast.makeText(this, "PROXIMAMENT", Toast.LENGTH_SHORT).show();
+            case R.id.mnuBorrar:
+                MobilesConv.remove(adapter.getItem(info.position));
+                // actualitzar la llista
+                refreshData();
+                // mostrar missatge
+                Toast.makeText(this, "S'ha esborrat el mobile!", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.mnuSortir :
                 this.finish();
