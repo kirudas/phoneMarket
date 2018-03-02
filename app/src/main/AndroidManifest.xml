@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".DetailMobile" />
         <activity android:name=".AboutUs" />
+        <activity android:name=".NouMobileActivity" />
         <activity
             android:name=".Colaboradors"
             android:configChanges="orientation|keyboardHidden|screenSize"
