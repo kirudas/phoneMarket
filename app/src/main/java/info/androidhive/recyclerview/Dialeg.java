@@ -56,13 +56,13 @@ public class Dialeg extends DialogFragment {
 
         //builder.setTitle("Títol");
         builder.setMessage("Escull una opció");
-        builder.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Esborrar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // què fer si prem OK
                 mListener.onDialogPositiveClick(Dialeg.this);
             }
         });
-        builder.setNegativeButton("Borrar",
+        builder.setNegativeButton("Cancel·lar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // què fer si prem Cancel

@@ -36,7 +36,7 @@ public class MobilesConversor {
         // es crea un objecte de diccionari (clau,valor) per indicar els valors a afegir
         ContentValues dades = new ContentValues();
 
-        dades.put("codi", mobile.getCodi());
+        //dades.put("codi", mobile.getCodi());
         dades.put("model", mobile.getModel());
         dades.put("marca", mobile.getMarca());
         dades.put("pantalla", mobile.getPantalla());
@@ -77,11 +77,11 @@ public class MobilesConversor {
      * @param t el Mobile a esborrar
      * @return la quantitat de Mobiles eliminats
      */
-    public boolean remove(Mobile t) {
+    public boolean remove(String t) {
         // obtenir l'objecte BD en mode esriptura
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        return db.delete("Mobiles", "codi=" + t.getCodi(),null ) > 0;
+        return db.delete("Mobiles", "codi=" + t,null ) > 0;
     }
     /**
      * Esborra tots els titulars de la taula

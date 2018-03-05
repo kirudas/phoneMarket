@@ -31,9 +31,10 @@ public class MainActivity extends AppCompatActivity implements DialegListener{
     private MobilesConversor MobilesConv;
     private RecyclerView llista;
     private TextView lblNoData;
+    private String mobileDel;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements DialegListener{
             public void onLongClick(View view, int position) {
                 DialogFragment nouDialeg = new Dialeg();
                 nouDialeg.show(getFragmentManager(), "dialegs");
+                Mobiles.moveToFirst();
+                for(int i = 1; i < position; i++){
+                    Mobiles.moveToNext();
+                }
+                mobileDel = Mobiles.getString(0).toString();
             }
         }));
 
@@ -161,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements DialegListener{
     /**
      * Respon a l'event d'haver escollit una opció del menú contextual
      */
-
+/*
     public boolean onContextItemSelected(MenuItem item) {
         //AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
 
@@ -169,34 +175,36 @@ public class MainActivity extends AppCompatActivity implements DialegListener{
             /*case R.id.about:
                 Intent intent = new Intent(MainActivity.this,AboutUs.class);
                 startActivity(intent);
-                return true;*/
+                return true;
             case R.id.edit:
                 // mostrar les dades de l'element escollit
                 Toast.makeText(this, "VEURÀ DADES", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.delete:
-                MobilesConv.remove(adapter.getItem(item.getOrder()));
+                //MobilesConv.remove(adapter.getItem(item.getOrder()));
                 // actualitzar la llista
-                refreshData();
+                //refreshData();
                 // mostrar missatge
-                Toast.makeText(this, "S'ha esborrat el mobile!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "S'ha esborrat el mobile!", Toast.LENGTH_LONG).show();
                 return true;
             default: break;
         }
         return false;
     }
+    */
 
     /**
      * S'executa quan es prem el botó OK del diàleg
      */
     public void onDialogPositiveClick(DialogFragment dialog) {
-        Toast.makeText(this, "EDITAR INFO", Toast.LENGTH_LONG).show();
+        MobilesConv.remove(mobileDel);
+        refreshData();
+
     }
 
     /**
      * S'executa quan es prem el botó Cancel del diàleg
      */
     public void onDialogNegativeClick(DialogFragment dialog) {
-        Toast.makeText(this, "ELIMINAT", Toast.LENGTH_LONG).show();
     }
 }
